@@ -1,0 +1,109 @@
+$ git clone https://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:x-oauth-basic@github.com/josevflores911/Node01.git
+
+
+------------------------------------------------------------------------------
+
+
+package com.tutorialspoint;
+
+import java.lang.*;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+public class ThreadDemo implements Runnable {
+
+   Thread t;
+
+   public void run() {
+      for (int i = 10; i < 13; i++) {
+        
+         System.out.println(Thread.currentThread().getName() + "  " + i);
+         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss yyyy/MM/dd ");
+          Date d2 = new Date();  // Current date with hours and seconds
+           System.out.println(dateFormat.format(d2));  
+         
+         try {
+            // thread to sleep for 1000 milliseconds
+            Thread.sleep(2000);
+         } catch (Exception e) {
+            System.out.println(e);
+         }
+      }
+   }
+
+   public static void main(String[] args) throws Exception {
+      Thread t = new Thread(new ThreadDemo());
+      // this will call run() function
+      t.start();
+      t.start();
+
+     /* Thread t2 = new Thread(new ThreadDemo());
+      // this will call run() function
+      t2.start();*/
+   }
+}
+
+------------------------------------------------------------------------
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+public class MyClass {
+    public static void main(String args[]) {
+      
+    //  String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+      
+     // System.out.println(timeStamp);
+      
+      DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss yyyy/MM/dd ");
+Date date = new Date();
+
+
+//System.out.println(dateFormat.format(date));
+
+
+        Date d1 = new Date(121, 11, 25);
+        
+        Date d3 = new Date(2010, 1, 3);
+  
+  
+        Date d2 = new Date();  // Current date with hours and seconds
+  
+        long temp = d2.getTime()-d1.getTime();
+        
+        Date d4 =new Date(temp);
+  
+        System.out.println(dateFormat.format(d4));  
+
+    }
+}
+
+--------------------------------------------
+
+java.util.Calendar
+
+Calendar cal = Calendar.getInstance();
+// remove next line if you're always using the current time.
+cal.setTime(currentDate);
+cal.add(Calendar.HOUR, -1);
+Date oneHourBack = cal.getTime();
+java.util.Date
+
+new Date(System.currentTimeMillis() - 3600 * 1000);
+org.joda.time.LocalDateTime
+
+new LocalDateTime().minusHours(1)
+Java 8: java.time.LocalDateTime
+
+LocalDateTime.now().minusHours(1)
+Java 8 java.time.Instant
+
+// always in UTC if not timezone set
+Instant.now().minus(1, ChronoUnit.HOURS));
+// with timezone, Europe/Berlin for example
+Instant.now()
+       .atZone(ZoneId.of("Europe/Berlin"))
+       .minusHours(1));
